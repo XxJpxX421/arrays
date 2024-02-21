@@ -6,11 +6,11 @@ class CarroModel {
     public function __construct() {
         // Inicializando as carros
         $this->carros = array(
-            array("id" => 1,"modelo" => "Ferrari SF21", "cor" => "Vermelho", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
-    array("id" => 2,"modelo" => "Mercedes-AMG F1 W12", "cor" => "Prata", "ano_fabricacao" => 2021, "potencia_motor" => "900cv", "peso" => "752kg"),
-    array("id" => 3,"modelo" => "Red Bull RB16B", "cor" => "Azul", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
-    array("id" => 4,"modelo" => "McLaren MCL35M", "cor" => "Laranja", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
-    array("id" => 5,"modelo" => "Alpine A521", "cor" => "Preto", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg")
+            array("id" => 1,"modelo" => "Ferrari SF21", "cor" => "red", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
+    array("id" => 2,"modelo" => "Mercedes-AMG F1 W12", "cor" => "silver", "ano_fabricacao" => 2021, "potencia_motor" => "900cv", "peso" => "752kg"),
+    array("id" => 3,"modelo" => "Red Bull RB16B", "cor" => "blue", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
+    array("id" => 4,"modelo" => "McLaren MCL35M", "cor" => "orange", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg"),
+    array("id" => 5,"modelo" => "Alpine A521", "cor" => "black", "ano_fabricacao" => 2021, "potencia_motor" => "850cv", "peso" => "752kg")
         );
     }
 

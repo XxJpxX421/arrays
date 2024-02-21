@@ -102,114 +102,108 @@
     </select>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.getElementById('track');
-            const car = document.getElementById('car');
-            const opponents = document.querySelectorAll('.opponent'); // Seleciona todos os carros oponentes
-            const finishLine = document.querySelector('.finish-line');
-            const carSelect = document.getElementById('carSelect');
-            const colorSelect = document.getElementById('colorSelect');
-            const startButton = document.getElementById('startButton');
-            const trackWidth = track.offsetWidth;
-            const carWidth = car.offsetWidth;
-            const spaceBetweenCars = 50; // Espaço entre os carros
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('track');
+    const car = document.getElementById('car');
+    const opponents = document.querySelectorAll('.opponent');
+    const finishLine = document.querySelector('.finish-line');
+    const carSelect = document.getElementById('carSelect');
+    const colorSelect = document.getElementById('colorSelect');
+    const startButton = document.getElementById('startButton');
+    const trackWidth = track.offsetWidth;
+    const carWidth = car.offsetWidth;
+    const spaceBetweenCars = 50;
 
-            // Definindo a cor e a posição inicial dos carros oponentes
-            opponents.forEach(function(opponent, index) {
-                opponent.style.backgroundColor = colorSelect.options[index].value;
-                opponent.style.left = `80px`; // Ajuste da posição inicial dos carros oponentes
-            });
-
-            // Função para mover o carro
-            function moveCar(element, speed) {
-                const currentLeft = parseInt(element.style.left.replace('px', '')) || 0;
-                const newLeft = currentLeft + speed;
-                if (newLeft + carWidth >= trackWidth) {
-                    resetRace(); // Resetar a corrida quando o carro atingir a linha de chegada
-                    return true; // Parar o movimento do carro
-                }
-                element.style.left = newLeft + 'px';
-                return false;
-            }
-
-            // Função para verificar se um dos carros venceu
-            function checkWinner() {
-                if (parseInt(car.style.left.replace('px', '')) + carWidth >= trackWidth) {
-                    return 'Você';
-                }
-                for (const opponent of opponents) {
-                    if (parseInt(opponent.style.left.replace('px', '')) + carWidth >= trackWidth) {
-                        return `O carro ${opponent.id}`;
-                    }
-                }
-                return '';
-            }
-
-            // Função para resetar a corrida
-            function resetRace() {
-    clearInterval(opponentInterval); // Interromper o movimento dos oponentes
-    car.style.left = '80px'; // Define a posição inicial do carro do jogador
     opponents.forEach(function(opponent, index) {
-        opponent.style.left = `80px`; // Define a posição inicial correta para cada oponente
+        opponent.style.backgroundColor = colorSelect.options[index].value;
+        opponent.style.left = `80px`;
     });
-    if (winner !== 'Você') {
-        winner = opponents[parseInt(winner.replace('opponent', '')) - 1]; // Se o vencedor não for o jogador, define-o como um oponente
+
+    let winner = '';
+
+    function moveCar(element, speed) {
+        const currentLeft = parseInt(element.style.left.replace('px', '')) || 0;
+        const newLeft = currentLeft + speed;
+        if (newLeft + carWidth >= trackWidth) {
+            resetRace();
+            return true;
+        }
+        element.style.left = newLeft + 'px';
+        return false;
     }
-    winner.style.left = '80px'; // Define a posição inicial do vencedor (se for o jogador)
-    startButton.style.display = 'block'; // Exibe novamente o botão de iniciar
-}
 
-            // Event listener para a tecla de espaço
-            document.addEventListener('keydown', function(event) {
-                if (event.code === 'Space') {
-                    if (moveCar(car, 20)) {
-                        alert('Você chegou à linha de chegada! Parabéns, você venceu!');
-                        resetRace();
-                    } else {
-                        const winner = checkWinner();
-                        if (winner !== '') {
-                            alert(`${winner} chegou à linha de chegada primeiro!`);
-                            resetRace();
-                        }
-                    }
-                }
-            });
-
-            // Event listener para selecionar o carro e a cor
-            carSelect.addEventListener('change', function() {
-                car.style.backgroundColor = colorSelect.value;
-            });
-
-            colorSelect.addEventListener('change', function() {
-                car.style.backgroundColor = colorSelect.value;
-            });
-
-            // Movimento automático dos carros oponentes
-            let opponentInterval;
-            function startRace() {
-                startButton.style.display = 'none'; // Esconde o botão de iniciar
-                function startOpponentMovement() {
-                    opponentInterval = setInterval(function() {
-                        for (const opponent of opponents) {
-                            const currentLeft = parseInt(opponent.style.left.replace('px', '')) || 0;
-                            const newLeft = currentLeft + (opponent.id === 'opponent1' ? 30 : 20);
-                            if (newLeft + carWidth >= trackWidth) {
-                                alert(`O carro ${opponent.id} chegou à linha de chegada primeiro!`);
-                                resetRace();
-                            }
-                            opponent.style.left = newLeft + 'px';
-                        }
-                    }, 500);
-                }
-
-                // Chamar a função para iniciar o movimento dos oponentes
-                startOpponentMovement();
+    function checkWinner() {
+        if (parseInt(car.style.left.replace('px', '')) + carWidth >= trackWidth) {
+            return 'Você';
+        }
+        for (const opponent of opponents) {
+            if (parseInt(opponent.style.left.replace('px', '')) + carWidth >= trackWidth) {
+                return `O carro ${opponent.id}`;
             }
+        }
+        return '';
+    }
 
-            startButton.addEventListener('click', function() {
-                startRace();
-            });
+    function resetRace() {
+        clearInterval(opponentInterval);
+        car.style.left = '80px';
+        opponents.forEach(function(opponent, index) {
+            opponent.style.left = `80px`;
         });
+        if (winner !== 'Você') {
+            winner = opponents[parseInt(winner.replace('opponent', '')) - 1];
+        }
+        winner.style.left = '80px';
+        startButton.style.display = 'block';
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+            if (moveCar(car, 20)) {
+                alert('Você chegou à linha de chegada! Parabéns, você venceu!');
+                resetRace();
+            } else {
+                const winner = checkWinner();
+                if (winner !== '') {
+                    alert(`${winner} chegou à linha de chegada primeiro!`);
+                    resetRace();
+                }
+            }
+        }
+    });
+
+    carSelect.addEventListener('change', function() {
+        car.style.backgroundColor = colorSelect.value;
+    });
+
+    colorSelect.addEventListener('change', function() {
+        car.style.backgroundColor = colorSelect.value;
+    });
+
+    let opponentInterval;
+    function startRace() {
+        startButton.style.display = 'none';
+        function startOpponentMovement() {
+            opponentInterval = setInterval(function() {
+                for (const opponent of opponents) {
+                    const currentLeft = parseInt(opponent.style.left.replace('px', '')) || 0;
+                    const newLeft = currentLeft + (opponent.id === 'opponent1' ? 30 : 20);
+                    if (newLeft + carWidth >= trackWidth) {
+                        alert(`O carro ${opponent.id} chegou à linha de chegada primeiro!`);
+                        resetRace();
+                    }
+                    opponent.style.left = newLeft + 'px';
+                }
+            }, 500);
+        }
+        startOpponentMovement();
+    }
+
+    startButton.addEventListener('click', function() {
+        startRace();
+    });
+});
+
     </script>
 </body>
 </html>
