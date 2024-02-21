@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Model/EquipesModel.php';
+include_once 'C:\xampp\htdocs\revisao\src\app\Model\EquipesModel.php';
 
 class EquipeController {
     private $equipeModel;

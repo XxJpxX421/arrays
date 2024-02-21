@@ -4,91 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Carros</title>
-    <style>
-       body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
-    color: #333;
-    text-align: center;
-}
-
-form {
-    margin-top: 20px;
-    max-width: 500px; /* Define a largura máxima do formulário */
-    margin: 0 auto; /* Centraliza o formulário na horizontal */
-}
-
-.lista {
-    margin-top: 20px;
-    max-width: 500px; /* Define a largura máxima do formulário */
-    margin: 0 auto; /* Centraliza o formulário na horizontal */
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #666;
-}
-
-input[type="text"],
-input[type="number"],
-button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul li {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.color-box {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border: 1px solid #ccc; /* Adicione uma borda para separar as cores */
-}
-    </style>
+    <link rel="stylesheet" href="public/css/registros.css">
 </head>
 <body>
     <?php
@@ -143,7 +59,7 @@ ul li {
         foreach ($carros as $carro) {
             echo '<li>' . 
                     '<div class="color-box" style="background-color: ' . $carro['cor'] . '"></div>' . 
-                    '<span>' . $carro['modelo'] . ' - Ano: ' . $carro['ano_fabricacao'] . '</span>' . 
+                    '<span> Id: ' . $carro['id'] . ' - ' . $carro['modelo'] . ' - Ano: ' . $carro['ano_fabricacao'] . '</span>' . 
                  '</li>';
         }
     } else {
@@ -188,6 +104,7 @@ ul li {
         <label for="carro_id">ID do Carro:</label><br>
         <input type="number" id="carro_id" name="carro_id" required><br><br>
         <button type="submit" name="deleteCarro">Excluir Carro</button>
+        <a href="page.php">Voltar</a>
     </form>
 </body>
 </html>

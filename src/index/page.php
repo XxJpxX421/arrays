@@ -47,9 +47,9 @@
   <div class="container">
     <button onclick="window.location.href='carros.php'">Registro de Carros</button>
     <button onclick="window.location.href='pilotos.php'">Registro de Pilotos</button>
-    <button onclick="window.location.href='classificacao.php'">Classificação</button>
+    <button onclick="window.location.href='corrida.php'">Corrida</button>
     <button onclick="window.location.href='pistas.php'">Registro de Pistas</button>
-    <button onclick="window.location.href='equipés.php'">Registro de Equipes</button>
+    <button onclick="window.location.href='equipes.php'">Registro de Equipes</button>
   </div>
 </body>
 </html>

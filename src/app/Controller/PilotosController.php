@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Model/PilotosModel.php';
+include_once 'C:\xampp\htdocs\revisao\src\app\Model\PilotosModel.php';
 
 class PilotoController {
     private $pilotoModel;

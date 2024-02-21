@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Model/PistasModel.php';
+include_once 'C:\xampp\htdocs\revisao\src\app\Model\PistasModel.php';
 
 class PistaController {
     private $pistaModel;
